@@ -7,6 +7,8 @@ services:
       VLLM_USE_V2_MODEL_RUNNER: "1"        # hardcoded, not a parameter at all
     ports:
       - "8000:8000"
+    volumes:
+      - huggingface-cache:/root/.cache/huggingface
     deploy:
       resources:
         reservations:
@@ -30,3 +32,5 @@ services:
       --port 8000
       --api-key "${VLLM_API_KEY}"
       --gpu-memory-utilization 0.95
+volumes:
+  huggingface-cache:
